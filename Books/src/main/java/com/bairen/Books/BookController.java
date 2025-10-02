@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins="*")
-@RequestMapping("/api/books")
+@RequestMapping("/api")
 public class BookController {
     @Autowired
     private final BookService bookService;
@@ -15,23 +15,23 @@ public class BookController {
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
-    @GetMapping
+    @GetMapping("/books")
     public List<Book>getBookList(){
         return bookService.getBookList();
     }
-    @GetMapping("/{id}")
+    @GetMapping("/books/{id}")
     public Book getBookById(@PathVariable Long id){
         return bookService.getBookById(id);
     }
-    @PostMapping
+    @PostMapping("/books")
     public Book addBooks(@RequestBody Book book){
         return bookService.addBooks(book);
     }
-    @PutMapping("/{id}")
+    @PutMapping("/books/{id}")
     public Book changeBook(@PathVariable Long id, @RequestBody Book bookUpdated){
         return bookService.changeBook(id,bookUpdated);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/books/{id}")
     public void deleteById(@PathVariable Long id){
         bookService.deleteById(id);
     }
