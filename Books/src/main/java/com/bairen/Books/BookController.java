@@ -9,9 +9,9 @@ import java.util.List;
 @CrossOrigin(origins="*")
 @RequestMapping("/api")
 public class BookController {
-    @Autowired
     private final BookService bookService;
 
+    @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
     }
@@ -34,5 +34,9 @@ public class BookController {
     @DeleteMapping("/books/{id}")
     public void deleteById(@PathVariable Long id){
          bookService.deleteById(id);
+    }
+    @GetMapping("/books/published")
+    public List<Book>getPublishedBooks(){
+        return bookService.getPublishedBooks();
     }
 }

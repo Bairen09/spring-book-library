@@ -62,4 +62,5 @@ public class Book {
     public void setPublished(boolean published) {
         this.published = published;
     }
+
 }

@@ -7,9 +7,9 @@ import java.util.List;
 
 @Service
 public class BookService {
-    @Autowired
-    private final BookRepo bookRepo;
 
+    private final BookRepo bookRepo;
+    @Autowired
     public BookService(BookRepo bookRepo) {
         this.bookRepo = bookRepo;
     }
@@ -35,10 +35,15 @@ public class BookService {
         existing.setTitle(bookUpdated.getTitle());
         existing.setAuthor(bookUpdated.getAuthor());
         existing.setYear(bookUpdated.getYear());
+        existing.setPublished(bookUpdated.isPublished());
         return bookRepo.save(existing);
     }
 
     public void deleteById(Long id) {
         bookRepo.deleteById(id);
+    }
+
+    public List<Book> getPublishedBooks() {
+        return bookRepo.findByPublishedTrue();
     }
 }
